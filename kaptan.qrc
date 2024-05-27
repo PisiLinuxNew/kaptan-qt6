@@ -1,0 +1,21 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/">
+        <file>data/images/kaptan-icon.svg</file>
+        <file>data/images/kaptan.png</file>
+        <file>data/images/kaptan_welcome.svg</file>
+        <file>data/images/menu-kicker.png</file>
+        <file>data/images/menu-kickoff.png</file>
+        <file>data/images/menu-kimpanel.png</file>
+        <file>data/images/oxygen-set.png</file>
+        <file>data/images/breeze-set.png</file>
+        <file>data/images/breeze-window.png</file>
+        <file>data/images/oxygen-window.png</file>
+        <file>data/images/oxygen-panel.png</file>
+        <file>data/images/breeze-panel.png</file>
+        <file>data/images/breeze-dark-panel.png</file>
+        <file>data/images/breeze-light-panel.png</file>
+        <file>data/images/air-panel.png</file>
+        <file>data/images/maia-panel.png</file>
+        <file>data/images/maia-set.png</file>
+    </qresource>
+</RCC>
