@@ -193,10 +193,15 @@ class AvatarWidget(QWizardPage):
     def execute(self):
         try:
             if self.userAvatar:
-                if os.path.exists(os.path.join(os.environ["HOME"], ".face.icon")):
-                    os.remove(os.path.join(os.environ["HOME"], ".face.icon"))
-                shutil.copy(self.userAvatar, os.path.join(os.environ["HOME"], ".face.icon"))
-                os.remove(self.userAvatar)
+                # if os.path.exists(os.path.join(os.environ["HOME"], ".face.icon")):
+                #     os.remove(os.path.join(os.environ["HOME"], ".face.icon"))
+                # shutil.copy(self.userAvatar, os.path.join(os.environ["HOME"], ".face.icon"))
+                # os.remove(self.userAvatar)
+                dest = "/var/lib/AccountsService/icons/{}".format(os.getlogin())
+                shutil.copy(self.userAvatar, dest)
+                # print("--------------------file_url : ", self.userAvatar)
+        except PermissionError:
+            print("Permission denied.")
         except:
             with open("/tmp/.kaptan.bug", "w") as d:
                 d.write("Avatar couldn't be changed.")

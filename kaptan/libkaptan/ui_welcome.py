@@ -18,7 +18,8 @@
 
 from PyQt6.QtWidgets import QWizardPage, QLabel, QHBoxLayout, QVBoxLayout, QSpacerItem, QSizePolicy #, QAction
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtCore import Qt, QT_VERSION_STR, PYQT_VERSION_STR
+from PyQt6.QtCore import Qt, QT_VERSION_STR, PYQT_VERSION_STR, QSysInfo
+from .version import Version
 
 
 class WelcomeWidget(QWizardPage):
@@ -50,7 +51,12 @@ class WelcomeWidget(QWizardPage):
         vlayout.addLayout(hlayout)
 
         verLabel = QLabel(self)
-        verLabel.setText(f"<u><strong>Versiyon :</strong></u><br>QT : {QT_VERSION_STR}<br>PYQT : {PYQT_VERSION_STR}")
+        verLabel.setText(f"<u><strong>Versiyon :</strong></u>\
+                         <br>QT : {QT_VERSION_STR}\
+                         <br>PYQT : {PYQT_VERSION_STR}\
+                         <br>KERNEL : {QSysInfo.kernelVersion()}\
+                         <br>OS : Pisi Lİnux {QSysInfo.productVersion()}\
+                         <br>Kaptan v{Version.VersionString}")
         vlayout.addWidget(verLabel)
 
         vlayout.addItem(QSpacerItem(20, 40, QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred))

@@ -37,7 +37,7 @@ class ThemeTabWidget(QTabWidget):
         self.createTabWindowStyle()
         self.createTabColorScheme()
         self.createTabDesktopTheme()
-        #self.createTabMouseCursor()
+        self.createTabMouseCursor()
         self.createTabIconSet()
 
 
@@ -194,18 +194,35 @@ class ThemeTabWidget(QTabWidget):
 
         self.addTab(self.tabDesktopTheme, self.tr("Desktop Theme"))
 
-    """def createTabMouseCursor(self):
+    def createTabMouseCursor(self):
         self.tabMouseCursor = QWidget()
         self.tabMouseCursor.setObjectName("tabMouseCursor")
 
-        self.verticalLayout_4 = QVBoxLayout(self.tabMouseCursor)
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        # self.verticalLayout_4 = QVBoxLayout(self.tabMouseCursor)
+        # self.verticalLayout_4.setObjectName("verticalLayout_4")
+
+        self.gridLayout = QGridLayout(self.tabMouseCursor)
+        self.gridLayout.setObjectName("gridLayout")
 
         self.listWidgetMouseCursor = QListWidget(self.tabMouseCursor)
         self.listWidgetMouseCursor.setObjectName("listWidgetMouseCursor")
+        self.listWidgetMouseCursor.setViewMode(QListView.ViewMode.IconMode)
+        self.listWidgetMouseCursor.setResizeMode(QListView.ResizeMode.Adjust)
+        self.listWidgetMouseCursor.setIconSize(QSize(128, 128))
+        self.gridLayout.addWidget(self.listWidgetMouseCursor, 0, 0, 1, 1)
 
-        self.verticalLayout_4.addWidget(self.listWidgetMouseCursor)
-        self.addTab(self.tabMouseCursor, self.tr("Mouse Cursor"))"""
+        item = QListWidgetItem(self.listWidgetMouseCursor)
+        item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter)
+        item.setIcon(QIcon("/usr/share/kaptan/images/Adwaita_cursor.png"))
+        item.setText("Adwaita")
+
+        item = QListWidgetItem(self.listWidgetMouseCursor)
+        item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter)
+        item.setIcon(QIcon("/usr/share/kaptan/images/Mevlana_cursor.png"))
+        item.setText("Mevlana")
+
+        # self.verticalLayout_4.addWidget(self.listWidgetMouseCursor)
+        self.addTab(self.tabMouseCursor, self.tr("Mouse Cursor"))
 
     def createTabIconSet(self):
         self.tabIconSet = QWidget()

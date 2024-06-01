@@ -548,7 +548,12 @@
         <translation>Desktop Theme</translation>
     </message>
     <message>
-        <location filename="../kaptan/libkaptan/tabwidget.py" line="237"/>
+        <location filename="../kaptan/libkaptan/tabwidget.py" line="233"/>
+        <source>Mouse Cursor</source>
+        <translation>Mouse Cursor</translation>
+    </message>
+    <message>
+        <location filename="../kaptan/libkaptan/tabwidget.py" line="260"/>
         <source>Icon Set</source>
         <translation>Icon Set</translation>
     </message>
