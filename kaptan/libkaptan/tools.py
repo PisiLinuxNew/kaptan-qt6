@@ -15,7 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301, USA.
 
-import re
+import re, os
 from PyQt6.QtCore import QSettings
 
 
@@ -49,7 +49,7 @@ class Parser(object):
         applets = self.getApplets()
 
         for applet in applets:
-            if ("org.kde.plasma.kickoff"  in applet) or ("org.kde.plasma.kicker"  in applet) or ("org.kde.plasma.kickerdash" in applet):
+            if ("org.kde.plasma.kickoff" in applet) or ("org.kde.plasma.kicker" in applet) or ("org.kde.plasma.kickerdash" in applet):
                 is_there = True
                 menu_applet = applet
                 break
@@ -61,6 +61,7 @@ class Parser(object):
 
             new_data = com.sub(menu_applet[0].replace(menu_applet[3], menu_style), self.read())
             self.sync(new_data)
+
             # '[Containments][1][Applets][2]\nimmutability=1\nplugin=org.kde.plasma.kicker\n'
         else:
             last_nums = []
@@ -79,6 +80,19 @@ class Parser(object):
                 self.sync(new_data)
                 self.setAppletOrder(0, applet_index)
 
+    def addWallpaper(self, path):
+        applets = self.getApplets()
+        if applets:
+            first_applet = applets[0][1]
+            wp_applet_index = str(int(first_applet)-1)
+            applet = "\n\n[Containments][{}][ConfigDialog]\nDialogHeight=480\nDialogWidth=640\n\n[Containments][{}][Wallpaper][org.kde.image][General]\nImage={}\nSlidePaths=/usr/share/wallpapers/\n".format(wp_applet_index, wp_applet_index, path)
+
+            home_dir = os.environ['HOME']
+            file_path = "{}/.config/plasma-org.kde.plasma.desktop-appletsrc".format(home_dir)
+            # print("file_path :", file_path)
+            with open(file_path, 'a') as f:
+                f.write(applet)
+
     def getWallpaper(self):
         regex = "(\[Containments\]\[[1-9]+\]\[Wallpaper\]\[org.kde.image\]\[General\]\n(.*)=(.*)\n)"
         read = re.search(regex, self.read())
@@ -94,6 +108,7 @@ class Parser(object):
         else:
             return False
 
+    #('[Containments][27][Wallpaper][org.kde.image][General]\nImage=/usr/share/wallpapers/Sprout/contents/images/1920x1440.png\n', 'Image', '/usr/share/wallpapers/Sprout/contents/images/1920x1440.png')
 
     def setWallpaper(self, path):
         if self.getWallpaper()[1] != "Image":
@@ -109,7 +124,7 @@ class Parser(object):
             self.sync(wp)
 
     def getDesktopType(self):
-        regex = "(\[Containments\]\[[1-9]*\]\nactivityId=.+\n.*\n.*\nlastScreen=.*\n.*\nplugin=(.*)\n)"
+        regex = "(\[Containments\]\[[1-9]*\]\n.*\n.*\nactivityId=.+\n.*\n.*\nlastScreen=.*\n.*\nplugin=(.*)\n)"
 
         read = re.search(regex, self.read())
 
@@ -117,7 +132,7 @@ class Parser(object):
             return read.group(1), read.group(2)
 
     def setDesktopType(self, view):
-        regex = "\[Containments\]\[[1-9]*\]\nactivityId=.+\n.*\n.*\nlastScreen=.*\n.*\nplugin=(.*)\n"
+        regex = "(\[Containments\]\[[1-9]*\]\n.*\n.*\nactivityId=.+\n.*\n.*\nlastScreen=.*\n.*\nplugin=(.*)\n)"
 
         com = re.compile(regex)
 

@@ -20,6 +20,8 @@
 
 import sys
 from PyQt6 import QtWidgets
+from PyQt6.QtGui import QIcon, QPixmap
+from PyQt6.QtCore import Qt
 from kaptan.libkaptan import *
 
 
@@ -32,9 +34,8 @@ class Kaptan(QtWidgets.QWizard):
         self.setWindowIcon(QIcon.fromTheme("kaptan-icon"))
         self.setMinimumSize(850, 600)
         self.setMaximumSize(950, 620)
-
         self.setPixmap(QtWidgets.QWizard.WizardPixmap.LogoPixmap, QPixmap("/usr/share/kaptan/images/kaptan.png"))
-        
+
         self.setButtonText(QtWidgets.QWizard.WizardButton.NextButton, self.tr("Next"))
         self.button(QtWidgets.QWizard.WizardButton.NextButton).setIcon(QIcon.fromTheme("arrow-right"))
         self.button(QtWidgets.QWizard.WizardButton.NextButton).setLayoutDirection(Qt.LayoutDirection.RightToLeft)
@@ -80,9 +81,9 @@ class Kaptan(QtWidgets.QWizard):
             self.page(5).execute()
 
             p = QProcess()
-            p.startDetached("kquitapp5", ["plasmashell"])
+            p.startDetached("kquitapp6", ["plasmashell"])
             p.waitForStarted(2000)
-            p.startDetached("kstart5", ["plasmashell"])
+            p.startDetached("kstart", ["plasmashell"])
 
         if identity == self.sumId:
             self.setButtonText(QtWidgets.QWizard.WizardButton.NextButton, self.tr("Apply Settings"))

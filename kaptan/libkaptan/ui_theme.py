@@ -49,6 +49,7 @@ class ThemeWidget(QWizardPage):
         self.desktopCount = 1
         self.desktopType = "org.kde.desktopcontainment"
         self.iconSet = None
+        self.mouseCursor = None
         self.showDesktop = False
         self.widgetStyle = "breeze"
         self.windowStyle = None
@@ -68,6 +69,7 @@ class ThemeWidget(QWizardPage):
         layout.addItem(QSpacerItem(20, 40, QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred))
 
         tabWidget.listWidgetIconSet.itemClicked.connect(self.iconSetSelect)
+        tabWidget.listWidgetMouseCursor.itemClicked.connect(self.mouseCursorSelect)
         tabWidget.listWidgetWindowStyle.itemClicked.connect(self.windowStyleSelect)
         # tabWidget.comboBoxWidgetStyle.currentIndexChanged[str].connect(self.widgetStyleSelect)
         tabWidget.comboBoxWidgetStyle.currentTextChanged.connect(self.widgetStyleSelect)
@@ -126,6 +128,9 @@ class ThemeWidget(QWizardPage):
     def iconSetSelect(self, item):
         self.iconSet = str(item.text()).lower()
 
+    def mouseCursorSelect(self, item):
+        self.mouseCursor = item.text()
+
     def desktopCreate(self, value):
         self.desktopCount = value
 
@@ -166,11 +171,14 @@ class ThemeWidget(QWizardPage):
             settings.setValue("Theme/name", self.desktopTheme)
             settings.sync()
 
-        """
         if self.mouseCursor != None:
-            settings = QSettings(join(QDir.homePath(), ".config", "plasmarc"), QSettings.Format.IniFormat)
-            settings.setValue("Theme/name", self.desktopTheme)
-            settings.sync()"""
+            # settings = QSettings(join(QDir.homePath(), ".config", "kcminputrc"), QSettings.Format.IniFormat)
+            # settings.setValue("Mouse/cursorTheme", self.mouseCursor)
+            # settings.sync()
+            # print(self.mouseCursor)
+
+            prc = QProcess()
+            prc.startDetached("plasma-apply-cursortheme", ["{}".format(self.mouseCursor)]) #fare imlecini sisteme işleyen komut.
 
         if self.colorScheme != None:
             colorSettings = QSettings(join("/usr/share/color-schemes", self.colorScheme), QSettings.Format.IniFormat)
@@ -193,10 +201,13 @@ class ThemeWidget(QWizardPage):
         configFilePath = join(QDir.homePath(), ".config", "plasma-org.kde.plasma.desktop-appletsrc")
 
         parser = Parser(configFilePath)
-        desktopView = parser.getDesktopType()
 
+        if self.desktopTypeCreate != None:
+            parser.setDesktopType(self.desktopType)
+
+        # desktopView = parser.getDesktopType()
         #no need for these lines, parser is already executing this logic
-        #if self.desktopType != desktopView[1]:
+        # if self.desktopType != desktopView[1]:
         #    parser.setDesktopType(self.desktopType)
 
         if self.showDesktop:

@@ -103,4 +103,6 @@ class OtherWidget(QWizardPage):
 
     def systemSettingsOpen(self):
         procSettings = QProcess()
-        procSettings.startDetached("systemsettings5")
+        # procSettings.startDetached("killall", ["systemsettings"])
+        # procSettings.waitForStarted(1000)
+        procSettings.startDetached("systemsettings")

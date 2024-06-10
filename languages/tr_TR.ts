@@ -780,7 +780,12 @@
         <translation>Masaüstü Teması</translation>
     </message>
     <message>
-        <location filename="../kaptan/libkaptan/tabwidget.py" line="237"/>
+        <location filename="../kaptan/libkaptan/tabwidget.py" line="233"/>
+        <source>Mouse Cursor</source>
+        <translation>Fare İmleci</translation>
+    </message>
+    <message>
+        <location filename="../kaptan/libkaptan/tabwidget.py" line="260"/>
         <source>Icon Set</source>
         <translation>Simge Seti</translation>
     </message>

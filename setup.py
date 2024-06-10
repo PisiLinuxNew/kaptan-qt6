@@ -26,7 +26,7 @@ from kaptan.libkaptan.version import Version
 langs = []
 for langfile in listdir("languages"):
     if langfile.endswith("ts"):
-        subprocess.run(["lrelease", "languages/{}".format(langfile)])
+        subprocess.run(["lrelease-qt6", "languages/{}".format(langfile)])
         langs.append("languages/{}".format(langfile).replace(".ts", ".qm"))
 
 images = []
