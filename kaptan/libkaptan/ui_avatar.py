@@ -142,7 +142,7 @@ class AvatarWidget(QWizardPage):
             if self.camera != None:
                 self.camera.stop()
             self.buttonReplay.setEnabled(False)
-            self.buttonCam.setenabled(False)
+            self.buttonCam.setEnabled(False)
             self.cameraView.hide()
             self.cameraLabel.show()
         elif index == 1:

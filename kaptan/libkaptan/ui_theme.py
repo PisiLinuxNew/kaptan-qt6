@@ -172,7 +172,7 @@ class ThemeWidget(QWizardPage):
             settings.sync()
 
         if self.mouseCursor != None:
-           # settings = QSettings(join(QDir.homePath(), ".config", "kcminputrc"), QSettings.Format.IniFormat)
+            # settings = QSettings(join(QDir.homePath(), ".config", "kcminputrc"), QSettings.Format.IniFormat)
             # settings.setValue("Mouse/cursorTheme", self.mouseCursor)
             # settings.sync()
             # print(self.mouseCursor)

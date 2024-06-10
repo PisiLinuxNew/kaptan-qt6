@@ -61,6 +61,7 @@ class Parser(object):
 
             new_data = com.sub(menu_applet[0].replace(menu_applet[3], menu_style), self.read())
             self.sync(new_data)
+
             # '[Containments][1][Applets][2]\nimmutability=1\nplugin=org.kde.plasma.kicker\n'
         else:
             last_nums = []
@@ -78,7 +79,7 @@ class Parser(object):
                 new_data = com.sub(first_applet[0] + applet, self.read())
                 self.sync(new_data)
                 self.setAppletOrder(0, applet_index)
-    
+
     def addWallpaper(self, path):
         applets = self.getApplets()
         if applets:

@@ -131,7 +131,7 @@ class WallpaperWidget(QWizardPage):
             configFilePath = join(QDir.homePath(), ".config", "plasma-org.kde.plasma.desktop-appletsrc")
             parser = Parser(configFilePath)
             wallpaper = parser.getWallpaper()
-            
+
             # if wallpaper is not None:
             if wallpaper:
                 parser.setWallpaper(self.selectWallpaper)

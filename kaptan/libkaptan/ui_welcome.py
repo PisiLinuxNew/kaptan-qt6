@@ -55,7 +55,7 @@ class WelcomeWidget(QWizardPage):
                          <br>QT : {QT_VERSION_STR}\
                          <br>PYQT : {PYQT_VERSION_STR}\
                          <br>KERNEL : {QSysInfo.kernelVersion()}\
-                         <br>OS : Pisi Lİnux {QSysInfo.productVersion()}\
+                         <br>OS : Pisi Linux {QSysInfo.productVersion()}\
                          <br>Kaptan v{Version.VersionString}")
         vlayout.addWidget(verLabel)
 

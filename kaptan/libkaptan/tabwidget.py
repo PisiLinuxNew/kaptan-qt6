@@ -216,6 +216,14 @@ class ThemeTabWidget(QTabWidget):
         item.setIcon(QIcon("/usr/share/kaptan/images/Adwaita_cursor.png"))
         item.setText("Adwaita")
 
+        # item = QListWidgetItem(self.listWidgetMouseCursor)
+        # item.setIcon(QIcon("/usr/share/kaptan/images/Breeze_Light_cursor.png"))
+        # item.setText("Breeze_Light")
+        #
+        # item = QListWidgetItem(self.listWidgetMouseCursor)
+        # item.setIcon(QIcon("/usr/share/kaptan/images/breeze_cursors_cursor.png"))
+        # item.setText("breeze_cursors")
+
         item = QListWidgetItem(self.listWidgetMouseCursor)
         item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter)
         item.setIcon(QIcon("/usr/share/kaptan/images/Mevlana_cursor.png"))
